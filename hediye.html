@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎁 Hediye Kutusu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom right, #ffe5ec, #ffc2d1);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #c9184a;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .box {
+      width: 200px;
+      height: 150px;
+      background-color: #ffb3c1;
+      border: 4px solid #800f2f;
+      border-radius: 1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      color: blue;
+      background-color: pink;
+    }
+
+    .box.open {
+      background-color: #fff0f3;
+      color: #800f2f;
+      transform: scale(1.2);
+    }
+    .message {
+      margin-top: 2rem;
+      padding: 1rem 1.5rem;
+      background: #fff0f3;
+      border-radius: 1rem;
+      color: #590d22;
+      font-size: 1.1rem;
+      display: none;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .box.open::after {
+      content: "🎈";
+      position: absolute;
+      top: -30px;
+      font-size: 2rem;
+      animation: float 1s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .heart {
+      position: fixed;
+      color: red;
+      animation: fall 3s linear forwards;
+      opacity: 0.8;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Bir Sürprizim Var! 🎁</h1>
+  <div class="box" id="giftBox">Aç Bakalım Prenses</div>
+  <div class="message" id="message">senin o gülüşün,sesin,yüzün bu kutudan daha değerli prenses bu da böyle bir mesajdı😉 💝</div>
+
+  <script>
+  const box = document.getElementById('giftBox');
+const msg = document.getElementById('message');
+let heartsInterval;
+
+box.addEventListener('click', () => {
+  box.classList.add('open');
+  box.textContent = 'teşekkürler prenses';
+  msg.style.display = 'block';
+
+  if (!heartsInterval) { // Sadece bir kere başlat
+    heartsInterval = setInterval(createHeart, 30); // Her 300 ms'de bir kalp yaratır
+  }
+});
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '❤️';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.top = '-50px';
+  heart.style.fontSize = (Math.random() * 30 + 10) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}
+
+
+
+
+  </script>
+</body>
+</html>

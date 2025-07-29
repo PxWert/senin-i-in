@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İltifat Kartları</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to top right, #fce3ec, #ffe8e1);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 700px;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: pink;
+      border-radius: 10px;
+
+    }
+
+    .cards-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      position: absolute;
+      width: 80%;
+      max-width: 300px;
+      height: 90%;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      font-size: 1.4rem;
+      color: #444;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: scale(0.9) translateX(0);
+    }
+
+    .card.active {
+      opacity: 1;
+      z-index: 3;
+      transform: scale(1) translateX(0);
+    }
+
+    .card.left {
+      opacity: 0.3;
+      z-index: 2;
+      transform: scale(0.9) translateX(-110%);
+    }
+
+    .card.right {
+      opacity: 0.3;
+      z-index: 2;
+      transform: scale(0.9) translateX(110%);
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #ffb6c1;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: #ff91a4;
+    }
+
+    #prev {
+      left: -25px;
+    }
+
+    #next {
+      right: -25px;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button id="prev" class="nav-btn">&#8249;</button>
+
+    <div class="cards-wrapper" id="cardsWrapper">
+      <div class="card left">Gözlerin, içimde saklı kalmış en derin duyguları uyandırıyor.</div>
+      <div class="card left">Gülüşün, dünyadaki en güzel melodiden bile daha etkileyici.</div>
+      <div class="card left">Gülüşün, karanlık bir odayı aydınlatacak kadar güçlü!</div>
+      <div class="card active">Bugün çok güzelsin, içten gelen bir ışıltın var!</div>
+      <div class="card right">Senin gibi biriyle tanışmak bir ayrıcalık!</div>
+      <div class="card right">Sadece görünüşün değil, enerjin de etkileyici.</div>
+      <div class="card right">Seninle konuşmak, ruhuma dokunan en güzel şiir gibi</div>
+         <div class="card right">Sadece varlığın bile etrafındaki her şeyi güzelleştiriyor.</div>
+         <div class="card right">Her bakışın, kalbimde iz bırakan nadir bir sanat eseri gibi.</div>
+         <div class="card right">İnan bana, senin ışığın yanında diğer her ışık sönük kalır.</div>
+         <div class="card right">Seninle geçen her saniye, hayatımın en değerli anı oluyor.</div>
+         <div class="card right">Konuşurken bile kalbimi hızlandırıyorsun, farkında mısın?</div>
+         <div class="card right">Seninle olmak, en karanlık anlarda bile umut dolmak demek.</div>
+         <div class="card right">Sen sadece güzel değil, aynı zamanda akıllı ve büyüleyicisin.</div>
+         <div class="card right">Her gülüşün, bana özel bir sırrı fısıldıyor gibi.</div>
+         <div class="card right">Işığın o kadar parlak ki, gölgeler bile senden kaçıyor.</div>
+         <div class="card right">Seninle geçen zaman, hayatımın en değerli hediyesi.</div>
+         <div class="card right">O eşsiz enerjinle insanları büyülemekten hiç vazgeçme.</div>
+         <div class="card right">Gözlerinde kaybolmak, en güzel kaçamaklardan biri.</div>
+         <div class="card right">Dünyanın en güzel masal kahramanı sensin, farkında mısın?</div>
+         <div class="card right">Sesin, ruhuma dokunan en tatlı melodi gibi.</div>
+         <div class="card right">Güzelliğin, sadece dış görünüş değil; içindeki o ışıkla daha da parlıyor.</div>
+
+    </div>
+
+    <button id="next" class="nav-btn">&#8250;</button>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    let current = 1;
+
+    function updateCards() {
+      cards.forEach((card, index) => {
+        card.classList.remove('left', 'right', 'active');
+        if (index === current) {
+          card.classList.add('active');
+        } else if (index === current - 1) {
+          card.classList.add('left');
+        } else if (index === current + 1) {
+          card.classList.add('right');
+        }
+      });
+    }
+
+    function nextCard() {
+      if (current < cards.length - 1) {
+        current++;
+        updateCards();
+      }
+    }
+
+    function prevCard() {
+      if (current > 0) {
+        current--;
+        updateCards();
+      }
+    }
+
+    document.getElementById("next").addEventListener("click", nextCard);
+    document.getElementById("prev").addEventListener("click", prevCard);
+
+    document.querySelector('.cards-wrapper').addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    document.querySelector('.cards-wrapper').addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) nextCard();
+      else if (endX - startX > 50) prevCard();
+    });
+
+    updateCards();
+  </script>
+
+</body>
+</html>
