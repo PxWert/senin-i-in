@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tatlılık Testi 🍬</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #ffe6f0, #ffcce0);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      color: #ff66a3;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+
+    .test-container {
+      background: #fff0f5;
+      color: #333;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .question {
+      margin-bottom: 1.2rem;
+    }
+
+    .question label {
+      font-size: 1.1rem;
+    }
+
+    .question input[type="range"] {
+      width: 100%;
+    }
+
+    button {
+      background: #ff66a3;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e05591;
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #ff3385;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍓 Tatlılık Testi 🍓</h1>
+
+  <div class="test-container">
+    <div class="question">
+      <label>1. Gülüşün tatlı mı? 😁</label>
+      <input type="range" min="0" max="10" value="5" id="q1">
+    </div>
+    <div class="question">
+      <label>2. Biri üzülünce hemen moral vermeye çalışır mısın? 💖</label>
+      <input type="range" min="0" max="10" value="5" id="q2">
+    </div>
+    <div class="question">
+      <label>3. Ses tonun yumuşak mı? 🎵</label>
+      <input type="range" min="0" max="10" value="5" id="q3">
+    </div>
+    <div class="question">
+      <label>4. Gözlerin koca koca bakıyor mu? 👀</label>
+      <input type="range" min="0" max="10" value="5" id="q4">
+    </div>
+    <div class="question">
+      <label>5. Sevdiğin kişilere sürpriz yapmayı sever misin? 🎁</label>
+      <input type="range" min="0" max="10" value="5" id="q5">
+    </div>
+
+    <button onclick="calculateSweetness()">Testi Bitir 🍬</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateSweetness() {
+      const total = 
+        Number(document.getElementById('q1').value) +
+        Number(document.getElementById('q2').value) +
+        Number(document.getElementById('q3').value) +
+        Number(document.getElementById('q4').value) +
+        Number(document.getElementById('q5').value);
+
+      const score = Math.round((total / 50) * 100);
+      const result = document.getElementById('result');
+      let message = "";
+
+      if(score >= 90){
+        message = `Sen %${score} tatlısın! Şeker komasına sokarsın 🧁💕`;
+      } else if(score >= 70){
+        message = `Sen %${score} tatlısın! Tatlılık sende doğuştan 😇🍩`;
+      } else if(score >= 50){
+        message = `Sen %${score} tatlısın! Ama biraz daha şeker gerek 🧃`;
+      } else {
+        message = `Sen %${score} tatlısın! Ama merak etme, tuz da lazım hayata 😜`;
+      }
+
+      result.textContent = message;
+      result.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gece Huzuru 🌙✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+      font-family: 'Quicksand', sans-serif;
+      color: #cfd8dc;
+      position: relative;
+    }
+
+    /* Küçük beyaz yıldızlar arka planı */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(2px 2px at 15% 20%, white, transparent),
+        radial-gradient(2px 2px at 25% 40%, white, transparent),
+        radial-gradient(2px 2px at 60% 60%, white, transparent),
+        radial-gradient(2px 2px at 60% 80%, white, transparent),
+        radial-gradient(2px 2px at 70% 30%, white, transparent),
+        radial-gradient(2px 2px at 85% 70%, white, transparent);
+      background-repeat: repeat;
+      background-size: 100px 100px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+      animation: twinkle 10s linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.3;}
+      50% {opacity: 0.7;}
+    }
+
+    .moon {
+      position: absolute;
+      top: 10%;
+      right: 1%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at 30% 30%, #fdfcfb, #bbbbbb 70%);
+      border-radius: 50%;
+      box-shadow:
+        inset -15px -10px 20px #ddd,
+        inset 10px 10px 20px #999;
+      filter: drop-shadow(0 0 8px #fdfcfb);
+      z-index: 1;
+    }
+
+    /* Düşünceler kutusu - dikdörtgen arka plan kaldırıldı */
+    .thought-box {
+      position: relative;
+      top: 400px;
+      top: 25%;
+      left: 32%;
+      background: transparent; /* Arka plan kaldırıldı */
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      font-size: 1.3rem;
+      min-height: 140px;
+      color: #e0e7f1;
+      user-select: text;
+      transition: opacity 0.5s ease;
+      z-index: 2;
+      backdrop-filter: blur(20px); /* Blur kaldırıldı */
+    }
+
+    button {
+      margin-top: 2rem;
+      background: #6c5ce7;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(108, 92, 231, 0.4);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      z-index: 2;
+      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 45%;
+    }
+    button:hover {
+      background: #4834d4;
+    }
+  </style>
+</head>
+<body>
+
+<audio autoplay loop>
+<iframe width="0" height="0" src="https://www.youtube.com/embed/RvEOC-mwet0?autoplay=1&loop=1&playlist=RvEOC-mwet0" 
+frameborder="0" allow="autoplay" allowfullscreen></iframe>
+</audio>
+
+  <div class="moon"></div>
+
+  <div class="thought-box" id="thoughtBox">“Gece, ruhun dans ettiği en güzel zamandır.”</div>
+  <button id="newThoughtBtn">Yeni Düşünce</button>
+
+  <script>
+    const thoughts = [
+       "“geceleri yıldızların yıldızı olarak sen varsın”",
+      "“Yıldızlar kadar parlak hayaller kur.”",
+      "“Sessizlik bazen en derin kelimeleri fısıldar.”",
+      "“Karanlık, ışığı daha anlamlı kılar.”",
+      "“Ruhun huzuru geceyle dans eder.”",
+      "“Ay gibi sakin, yıldızlar gibi umutlu ol.”",
+      "“Gece, yeni başlangıçların habercisidir.”",
+      "“Düşünceler, kalbin en güzel melodileridir.”",
+      "“Her karanlıkta bir ışık gizlidir.”",
+      "“Hayat, gece gibi bazen karanlık ama her zaman gizemlidir.”",
+      "“Huzur, en sessiz anlarda bulunur.”",
+      "“Gece, hayallerin özgürce uçtuğu yerdir.”",
+      "“Sakin bir gece, ruhun en güzel şiiridir.”",
+      "“Ay ışığı altında umut yeşerir.”",
+      "“Karanlıkta bile sevgi parıldar.”",
+      "“Gece, düşlerin gerçek olduğu sihirli andır.”"
+    ];
+
+    const thoughtBox = document.getElementById('thoughtBox');
+    const btn = document.getElementById('newThoughtBtn');
+
+    btn.addEventListener('click', () => {
+      let newThought;
+      do {
+        newThought = thoughts[Math.floor(Math.random() * thoughts.length)];
+      } while (newThought === thoughtBox.textContent);
+
+      thoughtBox.style.opacity = 0;
+      setTimeout(() => {
+        thoughtBox.textContent = newThought;
+        thoughtBox.style.opacity = 1;
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
